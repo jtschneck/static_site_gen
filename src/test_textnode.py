@@ -27,7 +27,7 @@ class TestTextNode(unittest.TestCase):
     def test_repr(self):
         node = TextNode("This is a text node", TextType.BOLD)
         txt = repr(node)
-        self.assertEqual("TextNode(This is a text node, BOLD, None)", txt)
+        self.assertEqual("TextNode(This is a text node, bold, None)", txt)
 
     def test_convert_text(self):
         node = TextNode("Text", TextType.TEXT)

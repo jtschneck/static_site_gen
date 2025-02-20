@@ -1,7 +1,7 @@
-from textnode import TextNode
+from textnode import TextNode, TextType
 
 def main():
-    node = TextNode("Test node", "bold", "wikipedia.org")
+    node = TextNode("Test node", TextType.BOLD, "wikipedia.org")
     print(node)
 
 main()
