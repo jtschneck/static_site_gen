@@ -1,11 +1,11 @@
 import os
 import shutil
 
-from converter import generate_page
+from converter import generate_pages_recursive
 
 def main():
     copy_public_to_static()
-    generate_page("content/index.md", "template.html", "public/index.html")
+    generate_pages_recursive("content", "template.html", "public")
 
 def copy_public_to_static():
     if os.path.exists("public"):
