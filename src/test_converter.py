@@ -80,5 +80,13 @@ class TestConverter(unittest.TestCase):
         res = markdown_to_html_node(text).to_html()
         self.assertEqual(expected, res)
 
+    def test_extract_title(self):
+        res = extract_title("# Hello")
+        self.assertEqual("Hello", res)
+
+    def test_extract_title_error(self):
+        with self.assertRaises(ValueError):
+            res = extract_title("## Hello")
+
 if __name__ == "__main__":
     unittest.main()
