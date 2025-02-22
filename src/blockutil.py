@@ -27,7 +27,7 @@ def block_to_block_type(block):
             
     # Check for code
     elif block.startswith("```"):
-        if block.endswith("```"):
+        if block.endswith("```") and len(block) > 6:
             return BlockType.CODE
         
     # Check for quote

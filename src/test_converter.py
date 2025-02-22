@@ -26,5 +26,59 @@ class TestConverter(unittest.TestCase):
         expected = [TextNode(text, TextType.TEXT)]
         self.assertEqual(expected, res)
 
+    def test_md_to_html_empty(self):
+        text = ""
+        expected = "<div></div>"
+        res = markdown_to_html_node(text).to_html()
+        self.assertEqual(expected, res)
+
+    def test_md_to_html_basic(self):
+        text = "single paragraph"
+        expected = "<div><p>single paragraph</p></div>"
+        res = markdown_to_html_node(text).to_html()
+        self.assertEqual(expected, res)
+
+    def test_md_to_html_two_paragraphs(self):
+        text = "single paragraph\n\nsecond paragraph"
+        expected = "<div><p>single paragraph</p><p>second paragraph</p></div>"
+        res = markdown_to_html_node(text).to_html()
+        self.assertEqual(expected, res)
+
+    def test_md_to_html_ul(self):
+        text = "* First\n* Second"
+        expected = "<div><ul><li>First</li><li>Second</li></ul></div>"
+        res = markdown_to_html_node(text).to_html()
+        self.assertEqual(expected, res)
+
+    def test_md_to_html_ul_bold(self):
+        text = "* First\n* **Second**"
+        expected = "<div><ul><li>First</li><li><b>Second</b></li></ul></div>"
+        res = markdown_to_html_node(text).to_html()
+        self.assertEqual(expected, res)
+
+    def test_md_to_html_ol(self):
+        text = "1. First\n2. Second"
+        expected = "<div><ol><li>First</li><li>Second</li></ol></div>"
+        res = markdown_to_html_node(text).to_html()
+        self.assertEqual(expected, res)
+
+    def test_md_to_html_quote(self):
+        text = "> one line\n> two lines"
+        expected = "<div><blockquote>one line\ntwo lines</blockquote></div>"
+        res = markdown_to_html_node(text).to_html()
+        self.assertEqual(expected, res)
+
+    def test_md_to_html_code(self):
+        text = "```code```"
+        expected = "<div><pre><code>code</code></pre></div>"
+        res = markdown_to_html_node(text).to_html()
+        self.assertEqual(expected, res)
+
+    def test_md_to_html_heading(self):
+        text = "##### Heading"
+        expected = "<div><h5>Heading</h5></div>"
+        res = markdown_to_html_node(text).to_html()
+        self.assertEqual(expected, res)
+
 if __name__ == "__main__":
     unittest.main()
